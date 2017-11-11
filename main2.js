@@ -1,12 +1,12 @@
 function getSingleEventById(myId){
     console.log(myId);
-     fetch("http://ioanavladau.com/wp/wp-json/wp/v2/events/" + myId + "/?_embed")
+     fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events/" + myId + "/?_embed")
         .then(res => res.json())
         .then(showSingleEvent);
 }
 
 function getMenu(){
-    fetch("http://ioanavladau.com/wp/wp-json/wp/v2/categories")
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/categories")
     .then(e=>e.json())
     .then(showMenu);
 }

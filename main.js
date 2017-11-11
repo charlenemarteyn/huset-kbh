@@ -1,18 +1,18 @@
 function getAllEvents() {
-    fetch("http://ioanavladau.com/wp/wp-json/wp/v2/events?_embed")
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed")
         .then(res => res.json())
         .then(showEvents);
 }
 
 function getAllEventsByCategory(id) {
-    fetch("http://ioanavladau.com/wp/wp-json/wp/v2/events?_embed&categories=" + id)
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&categories=" + id)
         .then(res => res.json())
         .then(showEvents);
 }
 
 ///// GET ALL EVENTS BY TAG
 function getAllEventsByTag(id) {
-    fetch("http://ioanavladau.com/wp/wp-json/wp/v2/events?_embed&per_page=20&tags=" + id)
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&per_page=20&tags=" + id)
         .then(res => res.json())
         .then(showEvents);
 }
@@ -20,13 +20,13 @@ function getAllEventsByTag(id) {
 
 function getSingleEventById(myId){
     console.log(myId);
-     fetch("http://ioanavladau.com/wp/wp-json/wp/v2/events/" + myId + "/?_embed")
+     fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events/" + myId + "/?_embed")
         .then(res => res.json())
         .then(showSingleEvent);
 }
 
 function getMenu(){
-    fetch("http://ioanavladau.com/wp/wp-json/wp/v2/categories?per_page=15")
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/categories?per_page=11")
     .then(e=>e.json())
     .then(showMenu);
 }
@@ -58,7 +58,7 @@ function showMenu(categories){
 
 ///// FETCHING TAGS FOR TAGS MENU
 function getTagsMenu(){
-    fetch("http://ioanavladau.com/wp/wp-json/wp/v2/tags")
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/tags")
     .then(e=>e.json())
     .then(showTagsMenu);
 }
