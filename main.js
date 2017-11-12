@@ -12,7 +12,7 @@ function getAllEventsByCategory(id) {
 
 ///// GET ALL EVENTS BY TAG
 function getAllEventsByTag(id) {
-    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&per_page=20&tags=" + id)
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&per_page=11&tags=" + id)
         .then(res => res.json())
         .then(showEvents);
 }

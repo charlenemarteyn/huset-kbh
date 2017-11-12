@@ -16,10 +16,11 @@
 .event h1 {
     font-family: 'Merriweather', serif;
     font-size: 2.5em;
+    color:#e49293;
 }
 .event img
 {  width: 100%;
-    border: 5px solid gray;
+    border: 5px solid #
 }
 
 p.p-price{
@@ -35,7 +36,7 @@ p.p-price{
 }
 
 .date, .time{
-    font-size: 2.5em;
+    font-size: 1.4em;
 }
 
 .pontano{
