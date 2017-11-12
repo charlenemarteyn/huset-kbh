@@ -31,8 +31,6 @@ function showMenu(categories){
         }
     });
 
-    //http://ioanavladau.com/wp/wp-json/wp/v2/events?categories=8
-
 }
 
 function showSingleEvent(json){

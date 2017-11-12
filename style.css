@@ -20,7 +20,7 @@
 }
 .event img
 {  width: 100%;
-    border: 5px solid #
+    border: 5px solid #f0c8c3;
 }
 
 p.p-price{
@@ -57,7 +57,7 @@ p.p-price{
 
 
 .container .p-price {
-    background-color: white;
+    background-color: #f8c38f;
     position: absolute;
     font-size: 2em;
     font-weight: 600;
@@ -98,9 +98,9 @@ font-size: 2em;
 }
 
 #tagmenu li a{
-     display: block;
+    display: block;
     padding: 8px;
-    background-color: #dddddd;
+    background-color: #c1ba9c;
 }
 
 /*
@@ -194,7 +194,7 @@ label.burger{
 }
 
 body {
-    background-color: floralwhite;
+    background-color: white;
     font-family: 'Libre Baskerville', serif;
     text-align: center;
     overflow: scroll;
