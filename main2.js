@@ -5,33 +5,9 @@ function getSingleEventById(myId){
         .then(showSingleEvent);
 }
 
-function getMenu(){
-    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/categories")
-    .then(e=>e.json())
-    .then(showMenu);
-}
 
 //categories or tags
 //if page has id, show tag list, else show full list
-
-function showMenu(categories){
-    console.log(categories);
-    //lt - link template
-    let lt = document.querySelector("#linkTemplate").content;
-    categories.forEach(function(category){
-
-        //if a category doesn't contain anything, don't show it
-        if(category.count > 0){
-        let clone = lt.cloneNode(true);
-        let parent = document.querySelector("#categorymenu");
-        clone.querySelector("a").textContent=category.name;
-        clone.querySelector("a").setAttribute("href", "index.html?categoryid="+category.id)
-        parent.appendChild(clone);
-
-        }
-    });
-
-}
 
 function showSingleEvent(json){
     console.log(json);
@@ -42,10 +18,8 @@ function showSingleEvent(json){
     img.setAttribute("src", json._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url);
     document.querySelector("#single .location span").textContent = json.acf.location;
     document.querySelector("#single .start-time span").textContent = json.acf.start_time;
+    document.querySelector("#single .description").innerHTML = json.content.rendered;
 
-
-//    let h1 = document.querySelector("#single h1");
-//    h1.textContent = "Hi mom";
 }
 
 let searchParams = new URLSearchParams(window.location.search);
@@ -53,7 +27,6 @@ let id = searchParams.get("id");
 let categoryid = searchParams.get("categoryid");
 //console.log(id);
 
-getMenu();
 getSingleEventById(id);
 
 //route - if this is true, go here, if not, go there

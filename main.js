@@ -1,18 +1,19 @@
 function getAllEvents() {
-    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed")
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&per_page=11")
         .then(res => res.json())
         .then(showEvents);
 }
 
 function getAllEventsByCategory(id) {
-    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&categories=" + id)
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&per_page=11&categories=" + id)
         .then(res => res.json())
         .then(showEvents);
 }
 
 ///// GET ALL EVENTS BY TAG
+
 function getAllEventsByTag(id) {
-    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&per_page=11&tags=" + id)
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/events?_embed&tags=" + id)
         .then(res => res.json())
         .then(showEvents);
 }
@@ -26,7 +27,7 @@ function getSingleEventById(myId){
 }
 
 function getMenu(){
-    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/categories?per_page=11")
+    fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/categories")
     .then(e=>e.json())
     .then(showMenu);
 }
@@ -57,12 +58,13 @@ function showMenu(categories){
 
 
 ///// FETCHING TAGS FOR TAGS MENU
+/*
 function getTagsMenu(){
     fetch("http://charlene-marteyn.dk/mywpsite/wp-json/wp/v2/tags")
     .then(e=>e.json())
     .then(showTagsMenu);
 }
-
+*/
 ///// SHOW TAGS MENU
 function showTagsMenu(tags){
     console.log(tags);
@@ -70,13 +72,13 @@ function showTagsMenu(tags){
     let lttags = document.querySelector("#linkTemplateTags").content;
     tags.forEach(function(tag){
 
-        if(tag.count > 0){
+
             let clone = lttags.cloneNode(true);
             let parent = document.querySelector("#tagmenu");
             clone.querySelector("a").textContent = tag.name;
             clone.querySelector("a").setAttribute("href", "index.html?tagid="+tag.id);
             parent.appendChild(clone);
-        }
+
     });
 }
 
@@ -86,18 +88,32 @@ function showSingleEvent(json){
     console.log(json);
     document.querySelector("#single h1").textContent = json.title.rendered;
     document.querySelector("#single .price span").textContent = json.acf.price;
+    document.querySelector(" .type").textContent = json.theEvent._embedded["wp:term"][1][0].name;
 //    let h1 = document.querySelector("#single h1");
 //    h1.textContent = "Hi mom";
 }
 
-
+let tags=[]
 function showEvents(data) {
     //console.log(data)
     let list = document.querySelector("#list");
     let template = document.querySelector("#eventTemplate").content;
 
     data.forEach(function (theEvent) {
-        console.log(theEvent)
+        let inArray=false;
+        for(let i=0; i<tags.length; i++){
+            if(tags[i].name===theEvent._embedded["wp:term"][1][0].name){
+                inArray=true;
+            }
+        }
+        if(inArray){
+            console.log("alreqdy hqve" + theEvent._embedded["wp:term"][1][0].name)
+        } else {
+          tags.push(theEvent._embedded["wp:term"][1][0])
+            console.log("dont hqve" + theEvent._embedded["wp:term"][1][0].name)
+        }
+        //tags.push(theEvent._embedded["wp:term"][1][0])
+
         let clone = template.cloneNode(true);
         let title = clone.querySelector("h1");
         let excerpt = clone.querySelector(".excerpt");
@@ -113,7 +129,7 @@ function showEvents(data) {
 //        excerpt.innerHTML = theEvent.excerpt.rendered;
         price.textContent = theEvent.acf.price;
         date.textContent = theEvent.acf.date;
-        type.textContent = theEvent.tags.rendered;
+        type.textContent = theEvent._embedded["wp:term"][1][0].name;
         startTime.textContent = theEvent.acf.start_time;
 //        console.log(theEvent._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url);
          img.setAttribute("src", theEvent._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url);
@@ -122,6 +138,7 @@ function showEvents(data) {
 
         list.appendChild(clone);
     })
+    showTagsMenu(tags);
 
 }
 
@@ -132,15 +149,13 @@ let tagid = searchParams.get("tagid");
 //console.log(id);
 
 getMenu();
-getTagsMenu();
+//getTagsMenu();
 
 if(id){
     getSingleEventById(id);
-}
-if(categoryid){
+} else if(categoryid){
     getAllEventsByCategory(categoryid);
-}
-if(tagid){
+} else if(tagid){
     getAllEventsByTag(tagid);
 }else{
     getAllEvents();

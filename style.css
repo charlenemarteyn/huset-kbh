@@ -9,34 +9,37 @@
 
 .event {
     margin: 0 auto;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     font-family: 'Pontano Sans', sans-serif;
 }
 
-.event h1 {
+.event h1{
     font-family: 'Merriweather', serif;
-    font-size: 2.5em;
+    font-size: 1.9em;
     color:#e49293;
 }
-.event img
-{  width: 100%;
-    border: 5px solid #f0c8c3;
+.event img{
+    width: 95%;
+    padding-top:25px;
 }
 
 p.p-price{
     background-color: white;
     padding: 5px;
-    margin-top: -370px;
-    margin-left: 65%;
 }
 
 #list{
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
-.date, .time{
-    font-size: 1.4em;
+.time{
+    font-size: 1.2em;
+}
+
+.date{
+   font-size: 1.2em;
+    color:#f8ad86;
 }
 
 .pontano{
@@ -50,8 +53,6 @@ p.p-price{
     margin: 0 auto;
     font-family: 'Pontano Sans', sans-serif;
     height: 100%;
-    border-right: 2px solid black;
-    border-bottom: 1px solid grey;
     padding-right: 3%;
 }
 
@@ -83,18 +84,19 @@ p.p-price{
 
 #tagmenu{
     text-align: center;
- list-style-type: none;
+    list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
+    padding-bottom:55px;
 }
 
 #tagmenu li{
 float: left;
 padding: 3%;
-font-size: 2em;
+font-size: 2.2em;
 }
 
 #tagmenu li a{
@@ -226,4 +228,43 @@ li a {
 
 li a:hover {
     text-decoration: underline;
+}
+
+.line{
+    width:144px;
+    height: 90px;
+    margin-left:415px;
+    margin-right: auto;
+}
+
+svg{
+    width:90px;
+}
+
+.description{
+    font-size:1em;
+    padding:40px;
+}
+
+.returnsign{
+    width:60px;
+    height:85px;
+    padding-top: 25px;
+}
+.moveleft{
+    padding-left:5vw;
+}
+
+.type{
+    font-style: italic;
+    font-size:0.8em;
+    color:darkgray;
+}
+
+#shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.price{
+    font-size:1.2em;
 }
